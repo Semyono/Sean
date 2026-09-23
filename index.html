@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>sean</title>
+  <link rel="icon" type="image/png" href="Icon.png" />
+  
+  <!-- Tailwind CSS for layout utility -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ==========================================================================
+       GLOBAL BASE STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background 0.4s ease, color 0.3s ease;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(120, 120, 120, 0.4);
+      border-radius: 3px;
+    }
+
+    /* ==========================================================================
+       THEME 1: WINDOWS 95
+       ========================================================================== */
+    body[data-theme="win95"] {
+      background-color: #008080;
+      font-family: "MS Sans Serif", Tahoma, sans-serif;
+      color: #000000;
+    }
+
+    body[data-theme="win95"] .win-window {
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win95"] .titlebar {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #ffffff;
+      padding: 3px 6px;
+      font-weight: bold;
+      font-size: 13px;
+      height: 30px;
+    }
+
+    body[data-theme="win95"] .btn-win-ctrl {
+      background: #c0c0c0;
+      border: 1px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      color: #000000;
+      width: 20px;
+      height: 20px;
+      font-size: 10px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 2px;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win95"] .nav-tab {
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #ffffff #808080 #c0c0c0 #ffffff;
+      color: #000;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 2px;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win95"] .nav-tab.active {
+      background: #c0c0c0;
+      border-color: #ffffff #808080 #c0c0c0 #ffffff;
+      border-bottom: none;
+      margin-bottom: -2px;
+    }
+
+    body[data-theme="win95"] .window-body {
+      background: #c0c0c0;
+      padding: 20px;
+    }
+
+    body[data-theme="win95"] .content-card {
+      background: #ffffff;
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      padding: 14px;
+      color: #000;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win95"] .taskbar {
+      background: #c0c0c0;
+      border-top: 2px solid #ffffff;
+      height: 38px;
+    }
+
+    body[data-theme="win95"] .start-btn {
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      font-weight: bold;
+      color: #000000;
+      padding: 2px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      height: 28px;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win95"] .taskbar-clock {
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      padding: 2px 8px;
+      font-size: 11px;
+      background: #c0c0c0;
+      color: #000;
+    }
+
+    body[data-theme="win95"] .theme-select {
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+    }
+
+    /* ==========================================================================
+       THEME 2: WINDOWS XP
+       ========================================================================== */
+    body[data-theme="winxp"] {
+      background: linear-gradient(180deg, #1f6bc3 0%, #3e8ee6 45%, #72b144 46%, #4e9225 100%);
+      font-family: Tahoma, "Segoe UI", sans-serif;
+      color: #000000;
+    }
+
+    body[data-theme="winxp"] .win-window {
+      background: #ece9d8;
+      border: 3px solid #0055ea;
+      border-radius: 8px 8px 0 0 !important;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    }
+
+    body[data-theme="winxp"] .titlebar {
+      background: linear-gradient(180deg, #0058e6 0%, #2076f7 12%, #0053d6 88%, #0041ab 100%);
+      color: #ffffff;
+      padding: 4px 10px;
+      font-weight: bold;
+      font-size: 13px;
+      height: 32px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
+
+    body[data-theme="winxp"] .btn-win-ctrl {
+      width: 21px;
+      height: 21px;
+      border-radius: 3px !important;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 3px;
+    }
+
+    body[data-theme="winxp"] .btn-win-ctrl.close {
+      background: linear-gradient(180deg, #f27357 0%, #e13c19 50%, #c11f00 100%);
+    }
+
+    body[data-theme="winxp"] .btn-win-ctrl.min,
+    body[data-theme="winxp"] .btn-win-ctrl.max {
+      background: linear-gradient(180deg, #3c8dfc 0%, #175ec2 100%);
+    }
+
+    body[data-theme="winxp"] .nav-tab {
+      background: linear-gradient(180deg, #ffffff 0%, #ece9d8 100%);
+      border: 1px solid #919082;
+      border-bottom: none;
+      color: #000;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 4px 4px 0 0 !important;
+      margin-right: 3px;
+    }
+
+    body[data-theme="winxp"] .nav-tab.active {
+      background: #ffffff;
+      border-color: #0055ea;
+      border-bottom: 1px solid #ffffff;
+      margin-bottom: -1px;
+      color: #000000;
+    }
+
+    body[data-theme="winxp"] .window-body {
+      background: #ece9d8;
+      padding: 20px;
+    }
+
+    body[data-theme="winxp"] .content-card {
+      background: #ffffff;
+      border: 1px solid #7f9db9;
+      padding: 16px;
+      border-radius: 4px !important;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+      color: #000000;
+    }
+
+    body[data-theme="winxp"] .taskbar {
+      background: linear-gradient(180deg, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 100%);
+      height: 38px;
+      border-top: 1px solid #3e82f7;
+    }
+
+    body[data-theme="winxp"] .start-btn {
+      background: linear-gradient(180deg, #388e3c 0%, #4caf50 20%, #2e7d32 100%);
+      border-radius: 0 12px 12px 0 !important;
+      color: #ffffff;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 2px 16px 2px 10px;
+      height: 38px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    body[data-theme="winxp"] .taskbar-clock {
+      background: linear-gradient(180deg, #0c8fea 0%, #0962b8 100%);
+      color: #ffffff;
+      padding: 4px 12px;
+      font-size: 11px;
+      border-left: 1px solid #10418c;
+    }
+
+    body[data-theme="winxp"] .theme-select {
+      background: #ffffff;
+      color: #000;
+      border: 1px solid #7f9db9;
+      border-radius: 3px;
+    }
+
+    /* ==========================================================================
+       THEME 3: WINDOWS 7
+       ========================================================================== */
+    body[data-theme="win7"] {
+      background: radial-gradient(circle at 50% 30%, #1e5799 0%, #112d4e 60%, #071220 100%);
+      font-family: "Segoe UI", sans-serif;
+      color: #ffffff;
+    }
+
+    body[data-theme="win7"] .win-window {
+      background: rgba(15, 30, 50, 0.75);
+      backdrop-filter: blur(16px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 8px !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    body[data-theme="win7"] .titlebar {
+      background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.2) 100%);
+      color: #ffffff;
+      padding: 6px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      height: 34px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    body[data-theme="win7"] .btn-win-ctrl {
+      width: 28px;
+      height: 20px;
+      border-radius: 3px !important;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+    }
+
+    body[data-theme="win7"] .nav-tab {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #d1e5f7;
+      padding: 6px 18px;
+      font-size: 13px;
+      border-radius: 5px 5px 0 0 !important;
+      margin-right: 4px;
+    }
+
+    body[data-theme="win7"] .nav-tab.active {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+    }
+
+    body[data-theme="win7"] .window-body {
+      background: rgba(10, 20, 35, 0.6);
+      padding: 22px;
+    }
+
+    body[data-theme="win7"] .content-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 16px;
+      border-radius: 6px !important;
+      color: #ffffff;
+    }
+
+    body[data-theme="win7"] .taskbar {
+      background: rgba(10, 25, 45, 0.65);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(255,255,255,0.3);
+      height: 42px;
+    }
+
+    body[data-theme="win7"] .start-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50% !important;
+      background: radial-gradient(circle at 50% 30%, #3a92d3 0%, #134575 70%, #09213a 100%);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 0 10px rgba(58, 146, 211, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+    }
+
+    body[data-theme="win7"] .taskbar-clock {
+      color: #ffffff;
+      font-size: 11px;
+      padding-right: 12px;
+    }
+
+    body[data-theme="win7"] .theme-select {
+      background: rgba(10, 20, 35, 0.8);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       THEME 4: WINDOWS 8.1
+       ========================================================================== */
+    body[data-theme="win8"] {
+      background: linear-gradient(135deg, #0d2b45 0%, #051329 100%);
+      font-family: "Segoe UI", sans-serif;
+      color: #ffffff;
+    }
+
+    body[data-theme="win8"] .win-window {
+      background: #1f1f1f;
+      border: 1px solid #3a3a3a;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win8"] .titlebar {
+      background: #111111;
+      color: #ffffff;
+      padding: 4px 12px;
+      font-size: 12px;
+      height: 32px;
+      border-bottom: 1px solid #3a3a3a;
+    }
+
+    body[data-theme="win8"] .btn-win-ctrl {
+      width: 36px;
+      height: 100%;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0px !important;
+    }
+    body[data-theme="win8"] .btn-win-ctrl:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    body[data-theme="win8"] .nav-tab {
+      background: transparent;
+      border: none;
+      color: #a0a0a0;
+      padding: 10px 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win8"] .nav-tab.active {
+      color: #ffffff;
+      background: #0078d7;
+    }
+
+    body[data-theme="win8"] .window-body {
+      background: #1f1f1f;
+      padding: 24px;
+    }
+
+    body[data-theme="win8"] .content-card {
+      background: #2d2d2d;
+      border: 1px solid #3a3a3a;
+      padding: 18px;
+      color: #ffffff;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win8"] .taskbar {
+      background: #0f0f0f;
+      border-top: 1px solid #222222;
+      height: 40px;
+    }
+
+    body[data-theme="win8"] .start-btn {
+      width: 44px;
+      height: 100%;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0px !important;
+    }
+
+    body[data-theme="win8"] .taskbar-clock {
+      color: #ffffff;
+      font-size: 11px;
+      padding-right: 12px;
+    }
+
+    body[data-theme="win8"] .theme-select {
+      background: #2d2d2d;
+      color: #ffffff;
+      border: 1px solid #3a3a3a;
+    }
+
+    /* ==========================================================================
+       THEME 5: WINDOWS 11
+       ========================================================================== */
+    body[data-theme="win11"] {
+      background: radial-gradient(circle at 60% 40%, #1e2640 0%, #0d111a 70%, #07090e 100%);
+      font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+      color: #ffffff;
+    }
+
+    body[data-theme="win11"] .win-window {
+      background: rgba(32, 32, 32, 0.85);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    body[data-theme="win11"] .titlebar {
+      background: rgba(20, 20, 20, 0.4);
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      height: 38px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    body[data-theme="win11"] .btn-win-ctrl {
+      width: 32px;
+      height: 26px;
+      border-radius: 6px !important;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 2px;
+    }
+    body[data-theme="win11"] .btn-win-ctrl:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    body[data-theme="win11"] .nav-tab {
+      background: transparent;
+      border: none;
+      color: #a0a0a0;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 8px !important;
+    }
+
+    body[data-theme="win11"] .nav-tab.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    body[data-theme="win11"] .window-body {
+      background: rgba(24, 24, 24, 0.5);
+      padding: 24px;
+    }
+
+    body[data-theme="win11"] .content-card {
+      background: rgba(40, 40, 40, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 10px !important;
+      color: #ffffff;
+    }
+
+    body[data-theme="win11"] .taskbar {
+      background: rgba(20, 20, 20, 0.75);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      height: 48px;
+      position: relative;
+    }
+
+    body[data-theme="win11"] .start-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px !important;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body[data-theme="win11"] .start-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    body[data-theme="win11"] .taskbar-clock {
+      position: absolute;
+      right: 16px;
+      color: #ffffff;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    body[data-theme="win11"] .theme-select {
+      background: rgba(30, 30, 30, 0.8);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+    }
+
+    /* Start Menu Flyout Styling */
+    .start-menu {
+      display: none;
+      position: absolute;
+      bottom: 50px;
+      z-index: 9999;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    body[data-theme="win95"] .start-menu {
+      left: 4px;
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      width: 220px;
+      padding: 4px;
+    }
+
+    body[data-theme="winxp"] .start-menu {
+      left: 0px;
+      background: #ffffff;
+      border: 2px solid #0055ea;
+      width: 300px;
+      border-radius: 8px 8px 0 0 !important;
+    }
+
+    body[data-theme="win7"] .start-menu {
+      left: 10px;
+      background: rgba(15, 30, 50, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      width: 320px;
+      border-radius: 8px !important;
+      padding: 12px;
+    }
+
+    body[data-theme="win8"] .start-menu {
+      left: 0px;
+      bottom: 40px;
+      background: #0078d7;
+      width: 100vw;
+      height: 220px;
+      padding: 20px;
+    }
+
+    body[data-theme="win11"] .start-menu {
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(32, 32, 32, 0.9);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      width: 380px;
+      border-radius: 12px !important;
+      padding: 18px;
+    }
+  </style>
+</head>
+<body data-theme="win8">
+
+  <div class="relative w-full h-full flex flex-col justify-between overflow-hidden select-none">
+    
+    <!-- Main Center Desktop Workspace -->
+    <div class="flex-1 flex items-center justify-center p-4">
+      
+      <!-- Window Container (Max 680px Width) -->
+      <div id="main-window" class="win-window w-full max-w-[680px] flex flex-col transition-all duration-300">
+        
+        <!-- Title bar -->
+        <div class="titlebar flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <img id="title-icon" src="Icon.png" class="w-4 h-4 object-cover" alt="Icon" onerror="this.src='https://placehold.co/32x32/0078d7/ffffff?text=S'" />
+            <span id="window-title-text" class="truncate font-medium">sean</span>
+          </div>
+
+          <!-- Title Bar Controls & Theme Selector Dropdown -->
+          <div class="flex items-center gap-3">
+            <!-- Theme Dropdown with EXACT Labels -->
+            <select id="theme-selector" onchange="setTheme(this.value)" class="theme-select text-xs px-2 py-0.5 outline-none cursor-pointer">
+              <option value="win95">Windows 95</option>
+              <option value="winxp">Windows XP</option>
+              <option value="win7">Windows 7</option>
+              <option value="win8" selected>Windows 8.1</option>
+              <option value="win11">Windows 11</option>
+            </select>
+
+            <div class="controls flex items-center">
+              <button class="btn-win-ctrl min" onclick="minimizeWindow()" title="Minimize">—</button>
+              <button class="btn-win-ctrl max" onclick="toggleMaximize()" title="Maximize">❏</button>
+              <button class="btn-win-ctrl close" onclick="closeWindow()" title="Close">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs-header flex p-2 gap-1 border-b border-white/10">
+          <button class="nav-tab active" onclick="switchTab(event, 'tab-about')">About</button>
+          <button class="nav-tab" onclick="switchTab(event, 'tab-projects')">Projects</button>
+          <button class="nav-tab" onclick="switchTab(event, 'tab-links')">Links</button>
+        </div>
+
+        <!-- Window Body Container -->
+        <div class="window-body">
+          
+          <!-- TAB 1: ABOUT -->
+          <div id="tab-about" class="tab-content block space-y-4">
+            <div class="flex items-center gap-4">
+              <img src="Icon.png" class="w-16 h-16 object-cover border border-slate-600 shadow-sm rounded" alt="Sean" onerror="this.src='https://placehold.co/100x100/0078d7/ffffff?text=Sean'" />
+              <div>
+                <h1 class="text-2xl font-bold tracking-tight">Sean</h1>
+                <p class="text-xs text-sky-400 font-semibold mt-0.5">c# / wpf / roblox / tools</p>
+              </div>
+            </div>
+
+            <div class="content-card leading-relaxed text-sm">
+              <p>Building desktop apps, Steam & Roblox tools, and custom scripts.</p>
+            </div>
+          </div>
+
+          <!-- TAB 2: PROJECTS -->
+          <div id="tab-projects" class="tab-content hidden space-y-3">
+            
+            <!-- Card 1: Steam Idler -->
+            <div class="content-card">
+              <div class="flex justify-between items-start mb-1.5">
+                <div>
+                  <h2 class="text-base font-bold">Sean's Steam Idler</h2>
+                </div>
+                <span class="text-[11px] px-2 py-0.5 bg-sky-600 text-white font-semibold rounded-sm">Steam</span>
+              </div>
+              <p class="text-xs opacity-85 mb-3 leading-relaxed">
+                C# WPF application for idling hours on Steam.
+              </p>
+              <a href="https://github.com/Semyono/SeansSteamIdler" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold bg-blue-700 hover:bg-blue-600 text-white transition-colors">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>View on GitHub</span>
+              </a>
+            </div>
+
+            <!-- Card 2: Account Manager -->
+            <div class="content-card">
+              <div class="flex justify-between items-start mb-1.5">
+                <div>
+                  <h2 class="text-base font-bold">Sean's Account Manager</h2>
+                </div>
+                <span class="text-[11px] px-2 py-0.5 bg-red-600 text-white font-semibold rounded-sm">Roblox</span>
+              </div>
+              <p class="text-xs opacity-85 mb-3 leading-relaxed">
+                Account management tool built for Roblox.
+              </p>
+              <a href="https://github.com/Semyono/Sean-s-Account-Manager" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold bg-blue-700 hover:bg-blue-600 text-white transition-colors">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>View on GitHub</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- TAB 3: LINKS -->
+          <div id="tab-links" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 gap-3">
+            
+            <a href="https://github.com/Semyono" target="_blank" rel="noopener noreferrer" class="content-card flex items-center gap-3.5 hover:opacity-90 transition-opacity">
+              <div class="p-2.5 bg-gray-800 text-white rounded-full">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold">GitHub</h3>
+                <p class="text-xs opacity-75">github.com/Semyono</p>
+              </div>
+            </a>
+
+            <a href="https://discord.gg/Jkzc86MdJj" target="_blank" rel="noopener noreferrer" class="content-card flex items-center gap-3.5 hover:opacity-90 transition-opacity">
+              <div class="p-2.5 bg-indigo-600 text-white rounded-full">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold">Discord</h3>
+                <p class="text-xs opacity-75">discord.gg/Jkzc86MdJj</p>
+              </div>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Start Menu Flyout Container -->
+    <div id="start-menu" class="start-menu">
+      <div id="start-menu-content">
+        <!-- Dynamic start menu content -->
+      </div>
+    </div>
+
+    <!-- Bottom Taskbar -->
+    <div class="taskbar flex items-center px-2 z-50">
+      <div id="taskbar-inner" class="w-full flex items-center justify-between">
+        
+        <div class="flex items-center gap-2">
+          <!-- Start Button -->
+          <button class="start-btn" onclick="toggleStartMenu()" title="Start">
+            <span id="start-btn-icon"></span>
+            <span id="start-btn-text">Start</span>
+          </button>
+
+          <!-- Active App Window Tab -->
+          <button id="taskbar-app-btn" onclick="restoreWindow()" class="px-3 py-1 bg-white/10 text-white text-xs flex items-center gap-2 border border-white/20">
+            <img src="Icon.png" class="w-3.5 h-3.5 object-cover" alt="Icon" onerror="this.src='https://placehold.co/32x32/0078d7/ffffff?text=S'" />
+            <span>sean</span>
+          </button>
+        </div>
+
+        <!-- Live Clock -->
+        <div class="taskbar-clock font-mono" id="clock">--:--</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /* Global Application State */
+    let currentTheme = 'win8';
+    let windowMaximized = false;
+
+    /* Theme Definitions */
+    const themes = {
+      win95: {
+        title: "sean",
+        icon: `<svg class="w-3.5 h-3.5" viewBox="0 0 16 16"><path fill="#000" d="M0 2h7v6H0zm8 0h8v6H8zm-8 7h7v6H0zm8 0h8v6H8z"/></svg>`,
+        startText: "Start",
+        startMenu: `
+          <div class="p-1 bg-blue-900 text-white font-bold text-xs mb-2">Windows 95</div>
+          <div class="flex flex-col text-xs text-black space-y-1">
+            <a href="https://github.com/Semyono" target="_blank" class="p-1 hover:bg-blue-800 hover:text-white">GitHub Profile</a>
+            <a href="https://discord.gg/Jkzc86MdJj" target="_blank" class="p-1 hover:bg-blue-800 hover:text-white">Discord Community</a>
+          </div>
+        `
+      },
+      winxp: {
+        title: "sean",
+        icon: `<svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 16 16"><path d="M0 2.227L6.452 1.341v6.23H0V2.227zm6.452 6.136v6.286L0 13.763V8.363h6.452zM7.28 1.228L16 0v7.571H7.28V1.228zm8.72 7.135V16L7.28 14.763V8.363H16z"/></svg>`,
+        startText: "start",
+        startMenu: `
+          <div class="bg-gradient-to-r from-blue-700 to-blue-500 p-2 text-white font-bold text-xs">Sean</div>
+          <div class="p-2 space-y-2 text-xs text-black">
+            <a href="https://github.com/Semyono" target="_blank" class="block hover:underline">GitHub</a>
+            <a href="https://discord.gg/Jkzc86MdJj" target="_blank" class="block hover:underline">Discord</a>
+          </div>
+        `
+      },
+      win7: {
+        title: "sean",
+        icon: `<svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.95-9.6L24 0v11.4H10.95M0 12.6h9.75v9.451L0 20.699M10.95 12.6H24V24l-13.05-1.801"/></svg>`,
+        startText: "",
+        startMenu: `
+          <div class="text-white space-y-2 text-xs">
+            <div class="font-semibold text-sm pb-1 border-b border-white/20">Sean</div>
+            <a href="https://github.com/Semyono" target="_blank" class="block p-1 hover:bg-white/10 rounded">GitHub</a>
+            <a href="https://discord.gg/Jkzc86MdJj" target="_blank" class="block p-1 hover:bg-white/10 rounded">Discord</a>
+          </div>
+        `
+      },
+      win8: {
+        title: "sean",
+        icon: `<svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 16 16"><path d="M0 2.227L6.452 1.341v6.23H0V2.227zm6.452 6.136v6.286L0 13.763V8.363h6.452zM7.28 1.228L16 0v7.571H7.28V1.228zm8.72 7.135V16L7.28 14.763V8.363H16z"/></svg>`,
+        startText: "",
+        startMenu: `
+          <div class="text-white">
+            <h2 class="text-xl font-light mb-3">Start</h2>
+            <div class="grid grid-cols-2 gap-3">
+              <a href="https://github.com/Semyono" target="_blank" class="p-3 bg-blue-600 hover:bg-blue-500 text-xs font-semibold">GitHub</a>
+              <a href="https://discord.gg/Jkzc86MdJj" target="_blank" class="p-3 bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold">Discord</a>
+            </div>
+          </div>
+        `
+      },
+      win11: {
+        title: "sean",
+        icon: `<svg class="w-3.5 h-3.5 fill-sky-400" viewBox="0 0 16 16"><path d="M0 0h7.5v7.5H0zM8.5 0H16v7.5H8.5zM0 8.5h7.5V16H0zM8.5 8.5H16V16H8.5z"/></svg>`,
+        startText: "",
+        startMenu: `
+          <div class="text-white space-y-3 text-xs">
+            <div class="opacity-60 font-medium">Pinned</div>
+            <div class="grid grid-cols-2 gap-2">
+              <a href="https://github.com/Semyono" target="_blank" class="p-2 bg-white/5 hover:bg-white/10 rounded flex items-center gap-2">
+                <span>🐙</span> <span>GitHub</span>
+              </a>
+              <a href="https://discord.gg/Jkzc86MdJj" target="_blank" class="p-2 bg-white/5 hover:bg-white/10 rounded flex items-center gap-2">
+                <span>💬</span> <span>Discord</span>
+              </a>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    /* Switch Theme Function */
+    function setTheme(themeKey) {
+      if (!themes[themeKey]) return;
+      currentTheme = themeKey;
+      document.body.setAttribute('data-theme', themeKey);
+
+      const t = themes[themeKey];
+      document.getElementById('window-title-text').innerText = t.title;
+      document.getElementById('start-btn-icon').innerHTML = t.icon;
+      document.getElementById('start-btn-text').innerText = t.startText;
+      document.getElementById('start-menu-content').innerHTML = t.startMenu;
+      document.getElementById('theme-selector').value = themeKey;
+
+      document.getElementById('start-menu').style.display = 'none';
+    }
+
+    /* Tab Switcher */
+    function switchTab(evt, tabId) {
+      document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+
+      evt.currentTarget.classList.add('active');
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+    }
+
+    /* Start Menu Toggle */
+    function toggleStartMenu() {
+      const menu = document.getElementById('start-menu');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('start-menu');
+      const startBtn = document.querySelector('.start-btn');
+      if (menu && !menu.contains(e.target) && !startBtn.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
+
+    /* Window Controls */
+    function minimizeWindow() {
+      const win = document.getElementById('main-window');
+      win.style.opacity = '0';
+      win.style.transform = 'scale(0.95)';
+      setTimeout(() => { win.style.display = 'none'; }, 200);
+    }
+
+    function restoreWindow() {
+      const win = document.getElementById('main-window');
+      win.style.display = 'flex';
+      setTimeout(() => {
+        win.style.opacity = '1';
+        win.style.transform = 'none';
+      }, 10);
+    }
+
+    function toggleMaximize() {
+      const win = document.getElementById('main-window');
+      if (!windowMaximized) {
+        win.classList.remove('max-w-[680px]');
+        win.classList.add('w-full', 'h-full');
+        windowMaximized = true;
+      } else {
+        win.classList.add('max-w-[680px]');
+        win.classList.remove('w-full', 'h-full');
+        windowMaximized = false;
+      }
+    }
+
+    function closeWindow() {
+      minimizeWindow();
+    }
+
+    /* Live Clock Updater */
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clock').innerText = timeStr;
+    }
+
+    /* Initial Load */
+    window.onload = function() {
+      setTheme('win8');
+      setInterval(updateClock, 1000);
+      updateClock();
+    };
+  </script>
+</body>
+</html>
